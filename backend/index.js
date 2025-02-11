@@ -1,10 +1,14 @@
-import express from "express";
+import express, { application } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-dotenv.config({});
 import connectDB from "./utils/db.js";
 import userRoute from "./routes/user.route.js";
+import companyRoute from "./routes/company.route.js"
+import jobRoute from "./routes/job.route.js"
+import applicationRoute from "./routes/application.route.js"
+
+dotenv.config({});
 
 const app = express();
 
@@ -21,6 +25,10 @@ const PORT = process.envPORT || 5000;
 
 //api's 
 app.use("/api/v1/user",userRoute);
+app.use("/api/v1/company", companyRoute);
+app.use("/api/v1/job", jobRoute);
+app.use("/api/v1/application", applicationRoute);
+
 
 app.listen(PORT,()=>{
     connectDB();
